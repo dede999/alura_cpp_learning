@@ -16,6 +16,7 @@ struct display {
 };
 
 void read_file(vector<string>* list);
+string pick_random_word(vector<string> list);
 
 class Game {
 public:
@@ -193,11 +194,11 @@ public:
 };
 
 int main() {
-  string phrase = "O RATO ROEU A ROUPA DO REI DE ROMA", display;
+  // string phrase = "O RATO ROEU A ROUPA DO REI DE ROMA", display;
   vector<string> word_list;
-  Game hangman(phrase);
   read_file(&word_list);
-  cout << word_list.size() << " words have been loaded" << endl;
+  string secret_word = pick_random_word(word_list);
+  Game hangman(secret_word);
 
   while (!hangman.has_won) {
     hangman.display();
@@ -206,14 +207,14 @@ int main() {
     if (hangman.is_hung()) {
       cout << "Você foi enforcado!" << endl;
       hangman.draw_ascii_limbs();
-      cout << "A palavra era: " << phrase << endl;
+      cout << "A palavra/frase era: " << secret_word << endl;
       break;
     }
   }
 
   if (hangman.has_won) {
     cout << "Você ganhou!" << endl;
-    cout << "A frase era: " << phrase << endl;
+    cout << "A palavra/frase era: " << secret_word << endl;
   }
 }
 
@@ -229,3 +230,9 @@ void read_file(vector<string>* list) {
     word_list.close();
   }
 };
+
+string pick_random_word(vector<string> list) {
+  srand(time(NULL));
+  int random_index = rand() % list.size();
+  return list[random_index];
+}
