@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <map>
 #include <string>
@@ -13,6 +14,8 @@ struct display {
   char letter;
   bool hit;
 };
+
+void read_file(vector<string>* list);
 
 class Game {
 public:
@@ -191,7 +194,10 @@ public:
 
 int main() {
   string phrase = "O RATO ROEU A ROUPA DO REI DE ROMA", display;
+  vector<string> word_list;
   Game hangman(phrase);
+  read_file(&word_list);
+  cout << word_list.size() << " words have been loaded" << endl;
 
   while (!hangman.has_won) {
     hangman.display();
@@ -210,3 +216,16 @@ int main() {
     cout << "A frase era: " << phrase << endl;
   }
 }
+
+void read_file(vector<string>* list) {
+  ifstream word_list;
+  string word;
+  word_list.open("static/word_list.txt");
+  if (word_list.is_open()) {
+    while (getline(word_list, word)) {
+      cout << word << endl;
+      list->push_back(word);
+    }
+    word_list.close();
+  }
+};
