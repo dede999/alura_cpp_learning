@@ -26,3 +26,65 @@ void list_guessed_attempts(map<char, struct game_info> guessed, bool is_correct)
     }
     cout << endl;
 }
+
+void draw_ascii_limbs(int limbs) {
+  switch (limbs) {
+  case 0:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 1:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 2:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << "  |   |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 3:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << " /|   |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 4:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << " /|\\  |" << endl;
+    cout << "      |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 5:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << " /|\\  |" << endl;
+    cout << " /    |" << endl;
+    cout << "      |" << endl;
+    break;
+  case 6:
+    cout << "  +---+" << endl;
+    cout << "  |   |" << endl;
+    cout << "  O   |" << endl;
+    cout << " /|\\  |" << endl;
+    cout << " / \\  |" << endl;
+    cout << "      |" << endl;
+    break;
+  }
+  cout << endl;
+}

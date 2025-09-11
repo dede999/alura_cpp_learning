@@ -15,6 +15,7 @@ struct display {
   bool hit;
 };
 
+void draw_ascii_limbs(int limbs);
 void show_display(vector<struct display> text_display);
 void list_guessed_attempts(map<char, struct game_info> guessed, bool is_correct);
 
