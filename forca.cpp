@@ -3,18 +3,9 @@
 #include <string>
 #include <vector>
 #include "headers/forca/words_feed.cpp"
+#include "headers/forca/game_components.cpp"
 
 using namespace std;
-
-struct game_info {
-  vector<int> occurences;
-  bool attempted;
-};
-
-struct display {
-  char letter;
-  bool hit;
-};
 
 class Game {
 public:
@@ -49,15 +40,7 @@ public:
     }
   }
 
-  void display() {
-    for (struct display d : text_display) {
-      if (d.hit)
-        cout << d.letter;
-      else
-        cout << "_ ";
-    }
-    cout << endl;
-  }
+  void display() { show_display(text_display); }
 
   bool validate_guess() {
     if (this->guess >= 'a' && this->guess <= 'z')
@@ -73,19 +56,7 @@ public:
 
   bool check_new_guess() { return !guessed[this->guess].occurences.empty(); }
 
-  void list_attemps(bool is_correct) {
-    if (is_correct) {
-      cout << "Letras corretas: ";
-    } else {
-      cout << "Letras erradas: ";
-    }
-
-    for (auto it = guessed.begin(); it != guessed.end(); it++) {
-      if (it->second.attempted && it->second.occurences.empty() == !is_correct)
-        cout << it->first << " ";
-    }
-    cout << endl;
-  }
+  void list_attemps(bool is_correct) { list_guessed_attempts(guessed, is_correct); }
 
   void check_guess() {
     cout << "Digite uma letra: ";
