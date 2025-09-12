@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "headers/forca/words_feed.cpp"
-#include "headers/forca/game.cpp"
+#include "headers/forca/words_feed.hpp"
+#include "headers/forca/game.hpp"
 
 using namespace std;
 
