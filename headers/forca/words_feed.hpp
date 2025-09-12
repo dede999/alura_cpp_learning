@@ -6,6 +6,6 @@
 #include <ctime>
 using namespace std;
 
-void words_feed(vector<string>* list);
+void read_file(vector<string>* list);
 string pick_random_word(vector<string> list);
 #endif
