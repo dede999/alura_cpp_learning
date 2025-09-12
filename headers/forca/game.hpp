@@ -20,7 +20,7 @@ class Game {
   private:
     vector<struct display> text_display;
     map<char, struct game_info> guessed;
-    bool is_winner;
+    bool is_winner = false;
     int limbs = 0;
     string secret;
     char guess;
