@@ -39,7 +39,7 @@ int main() {
         cout << "The secret number is greater than your guess.\nPUT IT UP" << endl;
         score -= (secret_number - current_guess) * factor;
     } else if (current_guess > secret_number) {
-        cout << "The secret number is lower than you guess\nPPUT IT DOWN" << endl;
+        cout << "The secret number is lower than you guess\nPUT IT DOWN" << endl;
         score -= (current_guess - secret_number) * factor;
     } else {
         guessed = true;
