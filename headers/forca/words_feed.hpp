@@ -4,8 +4,13 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-using namespace std;
 
-void read_file(vector<string>* list);
-string pick_random_word(vector<string> list);
+namespace WordsFeed {
+  static std::vector<std::string> word_list;
+  static std::string file_path = "static/word_list.txt";
+
+  void read_file();
+  std::string pick_random_word();
+}
+
 #endif
