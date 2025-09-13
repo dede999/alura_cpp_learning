@@ -14,7 +14,7 @@ bool Game::validate_guess() {
     this->guess = this->guess - 'a' + 'A';
 
   if (this->guess < 'A' || this->guess > 'Z') {
-    cout << "Letra inválida." << endl;
+    std::cout << "Letra inválida." << std::endl;
     return false;
   }
 
@@ -28,29 +28,29 @@ void Game::list_attemps(bool is_correct) {
 }
 
 void Game::check_guess() {
-  cout << "Digite uma letra: ";
-  cout << "Tentativas restantes: " << 6 - this->limbs << endl;
+  std::cout << "Digite uma letra: ";
+  std::cout << "Tentativas restantes: " << 6 - this->limbs << std::endl;
   list_attemps(true);
   list_attemps(false);
 
-  cin >> this->guess;
+  std::cin >> this->guess;
   if (!validate_guess())
     return;
 
   if (guessed[this->guess].attempted) {
-    cout << "Você já tentou essa letra." << endl;
+    std::cout << "Você já tentou essa letra." << std::endl;
     return;
   }
 
   if (check_new_guess()) {
-    cout << "Você acertou!" << endl;
+    std::cout << "Você acertou!" << std::endl;
     for (int i : guessed[this->guess].occurences) {
       text_display[i].hit = true;
     }
   } else {
     limbs++;
-    cout << "Você errou! A letra '" << this->guess << "' não está na palavra."
-         << endl;
+    std::cout << "Você errou! A letra '" << this->guess << "' não está na palavra."
+         << std::endl;
   }
   guessed[this->guess].attempted = true;
   check_win();
@@ -70,7 +70,7 @@ void Game::check_win() {
 
 bool Game::has_won() { return is_winner; }
 
-Game::Game(string word) {
+Game::Game(std::string word) {
   struct display d;
   this->secret = word;
   for (char letter = 'A'; letter <= 'Z'; letter++) {
@@ -94,5 +94,5 @@ Game::Game(string word) {
 }
 
 Game::~Game() {
-  cout << "Fim de jogo!" << endl;
+  std::cout << "Fim de jogo!" << std::endl;
 }

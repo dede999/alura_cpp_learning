@@ -5,7 +5,7 @@
 
 class Game {
   public:
-    Game(string word);
+    Game(std::string word);
     ~Game();
 
     bool is_hung();
@@ -18,11 +18,11 @@ class Game {
     bool check_new_guess();
     void list_attemps(bool is_correct);
   private:
-    vector<struct display> text_display;
-    map<char, struct game_info> guessed;
+    std::vector<struct display> text_display;
+    std::map<char, struct game_info> guessed;
     bool is_winner = false;
     int limbs = 0;
-    string secret;
+    std::string secret;
     char guess;
 };
 
