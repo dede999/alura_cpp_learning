@@ -1,2 +1,12 @@
 .vscode
 .idea
+
+# executables
+guessing_game
+forca
+
+# object files
+*.o
+
+# Mac 
+.DS_Store
