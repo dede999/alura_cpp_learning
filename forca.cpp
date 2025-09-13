@@ -9,8 +9,7 @@ using namespace std;
 int main() {
   // string phrase = "O RATO ROEU A ROUPA DO REI DE ROMA", display;
   vector<string> word_list;
-  read_file(&word_list);
-  string secret_word = pick_random_word(word_list);
+  string secret_word = WordsFeed::pick_random_word();
   Game hangman(secret_word);
 
   while (!hangman.has_won()) {
