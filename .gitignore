@@ -2,8 +2,8 @@
 .idea
 
 # executables
-guessing_game
-forca
+./guessing_game
+./forca
 
 # object files
 *.o
