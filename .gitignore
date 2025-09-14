@@ -2,8 +2,7 @@
 .idea
 
 # executables
-./guessing_game
-./forca
+bin/*
 
 # object files
 *.o
