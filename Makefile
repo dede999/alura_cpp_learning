@@ -15,3 +15,8 @@ play_forca: forca
 
 see_accounts: accounts
 	./bin/accounts
+
+clean:
+	rm bin/*
+
+all: guessing_game forca accounts
