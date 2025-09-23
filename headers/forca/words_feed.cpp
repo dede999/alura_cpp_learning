@@ -18,6 +18,7 @@ namespace WordsFeed {
   };
 
   std::string pick_random_word() {
+    read_file();
     std::srand(std::time(NULL));
     int random_index = std::rand() % word_list.size();
     std::string random_word = word_list[random_index];

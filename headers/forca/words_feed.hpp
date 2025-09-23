@@ -2,8 +2,6 @@
 #define WORDS_FEED_HPP
 
 #include <vector>
-#include <cstdlib>
-#include <ctime>
 
 namespace WordsFeed {
   static std::vector<std::string> word_list;
