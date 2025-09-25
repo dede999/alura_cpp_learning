@@ -16,6 +16,10 @@ play_forca: forca
 see_accounts: accounts
 	./bin/accounts
 
+test: test/main.cpp headers/**/*.cpp test/forca/*.cpp
+	g++ $< -O3 -o bin/test
+	./bin/test
+
 clean:
 	rm bin/*
 
