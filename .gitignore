@@ -9,3 +9,6 @@ bin/*
 
 # Mac 
 .DS_Store
+
+# coverage files
+coverage/*
