@@ -6,6 +6,7 @@
 
 // declaring helper methods
 std::vector<struct display> generate_word_display();
+std::map<char, struct game_info> generate_guessed_map();
 
 TEST_CASE("Game Components - Display Structure", "[game_components]") {
     SECTION("Display structure initialization") {
@@ -64,7 +65,7 @@ TEST_CASE("Game Components - Display Vector", "[game_components]") {
 TEST_CASE("Game Components - show_display()", "[game_components]") {
     SECTION("When some letter was not hit") {
         OutputCapture capture;
-        std::vector<struct display> text_display = GENERATE(generate_word_display());
+        std::vector<struct display> text_display = generate_word_display();
         
         show_display(text_display);
         
@@ -73,12 +74,32 @@ TEST_CASE("Game Components - show_display()", "[game_components]") {
 
     SECTION("When all letters were hit") {
         OutputCapture capture;
-        std::vector<struct display> text_display = GENERATE(generate_word_display());
+        std::vector<struct display> text_display = generate_word_display();
         text_display[1].hit = true;
         
         show_display(text_display);
         
         REQUIRE(capture.getOutput() == "HE\n");
+    }
+}
+
+TEST_CASE("Game Components - list_guessed_attempts()", "[game_components]") {
+    SECTION("When listing wrong attempts") {
+        OutputCapture capture;
+        std::map<char, struct game_info> guessed = generate_guessed_map();
+        
+        list_guessed_attempts(guessed, false);
+        
+        REQUIRE(capture.getOutput() == "Letras erradas: E \n");
+    }
+
+    SECTION("When listing correct attempts") {
+        OutputCapture capture;
+        std::map<char, struct game_info> guessed = generate_guessed_map();
+        
+        list_guessed_attempts(guessed, true);
+        
+        REQUIRE(capture.getOutput() == "Letras corretas: H \n");
     }
 }
 
@@ -98,4 +119,20 @@ std::vector<struct display> generate_word_display() {
     text_display.push_back(d2);
     
     return text_display;
+}
+
+std::map<char, struct game_info> generate_guessed_map() {
+    std::map<char, struct game_info> guessed;
+    
+    struct game_info info1;
+    info1.attempted = true;
+    info1.occurences.push_back(0);
+    
+    struct game_info info2;
+    info2.attempted = true;
+    
+    guessed['H'] = info1;
+    guessed['E'] = info2;
+    
+    return guessed;
 }
