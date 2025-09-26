@@ -26,14 +26,14 @@ see_accounts: accounts
 	./$(BIN_DIR)/accounts
 
 # Regular test target
-test: test/main.cpp headers/**/*.cpp test/forca/*.cpp
+test: test/main.cpp test/utils/*.cpp headers/**/*.cpp test/forca/*.cpp
 	g++ $< $(CXXFLAGS) -o $(BIN_DIR)/test
 	./$(BIN_DIR)/test
 
 # Test with coverage
-test-coverage: test/main.cpp headers/**/*.cpp test/forca/*.cpp
+test-coverage: test/main.cpp test/utils/*.cpp headers/**/*.cpp test/forca/*.cpp
 	@mkdir -p $(BIN_DIR) $(COVERAGE_DIR)
-	g++ test/main.cpp headers/forca/*.cpp test/forca/*.cpp $(COVERAGE_FLAGS) -o $(BIN_DIR)/test-coverage
+	g++ test/main.cpp test/utils/*.cpp headers/forca/*.cpp test/forca/*.cpp $(COVERAGE_FLAGS) -o $(BIN_DIR)/test-coverage
 	./$(BIN_DIR)/test-coverage
 
 # Generate coverage report
