@@ -1,28 +1,9 @@
 #include "../catch.hpp"
 #include "../../headers/forca/game_components.hpp"
+#include "../utils/helpers/game_components_helper.hpp"
 #include "../utils/output_capture.hpp"
 #include <vector>
 #include <map>
-
-// declaring helper methods
-std::vector<struct display> generate_word_display();
-std::map<char, struct game_info> generate_guessed_map();
-
-struct LimbTestCase {
-    int input;
-    std::string expected_output() {
-        switch(input) {
-            case 0: return "  +---+\n  |   |\n      |\n      |\n      |\n      |\n\n";
-            case 1: return "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n      |\n\n";
-            case 2: return "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n      |\n\n";
-            case 3: return "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n      |\n\n";
-            case 4: return "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n      |\n\n";
-            case 5: return "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n      |\n      |\n\n";
-            case 6: return "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n      |\n\n";
-            default: return "";
-        }
-    }
-};
 
 TEST_CASE("Game Components - Display Structure", "[game_components]") {
     SECTION("Display structure initialization") {
@@ -130,39 +111,4 @@ TEST_CASE("Game Components - draw_ascii_limbs()", "[game_components]") {
             REQUIRE(capture.getOutput() == test_case.expected_output());
         }
     }
-
-}
-
-// implementing helper methods
-std::vector<struct display> generate_word_display() {
-    std::vector<struct display> text_display;
-    
-    struct display d1;
-    d1.letter = 'H';
-    d1.hit = true;
-    
-    struct display d2;
-    d2.letter = 'E';
-    d2.hit = false;
-    
-    text_display.push_back(d1);
-    text_display.push_back(d2);
-    
-    return text_display;
-}
-
-std::map<char, struct game_info> generate_guessed_map() {
-    std::map<char, struct game_info> guessed;
-    
-    struct game_info info1;
-    info1.attempted = true;
-    info1.occurences.push_back(0);
-    
-    struct game_info info2;
-    info2.attempted = true;
-    
-    guessed['H'] = info1;
-    guessed['E'] = info2;
-    
-    return guessed;
 }
