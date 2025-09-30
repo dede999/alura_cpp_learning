@@ -8,6 +8,22 @@
 std::vector<struct display> generate_word_display();
 std::map<char, struct game_info> generate_guessed_map();
 
+struct LimbTestCase {
+    int input;
+    std::string expected_output() {
+        switch(input) {
+            case 0: return "  +---+\n  |   |\n      |\n      |\n      |\n      |\n\n";
+            case 1: return "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n      |\n\n";
+            case 2: return "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n      |\n\n";
+            case 3: return "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n      |\n\n";
+            case 4: return "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n      |\n\n";
+            case 5: return "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n      |\n      |\n\n";
+            case 6: return "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n      |\n\n";
+            default: return "";
+        }
+    }
+};
+
 TEST_CASE("Game Components - Display Structure", "[game_components]") {
     SECTION("Display structure initialization") {
         struct display d;
@@ -101,6 +117,20 @@ TEST_CASE("Game Components - list_guessed_attempts()", "[game_components]") {
         
         REQUIRE(capture.getOutput() == "Letras corretas: H \n");
     }
+}
+
+TEST_CASE("Game Components - draw_ascii_limbs()", "[game_components]") {
+    for (int i = 0; i < 7; i++) {
+        LimbTestCase test_case;
+        test_case.input = i;
+        SECTION("draw_ascii_limbs() with " + std::to_string(test_case.input) + " limbs") {
+            OutputCapture capture;
+            draw_ascii_limbs(test_case.input);
+            
+            REQUIRE(capture.getOutput() == test_case.expected_output());
+        }
+    }
+
 }
 
 // implementing helper methods
