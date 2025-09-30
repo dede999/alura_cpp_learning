@@ -27,7 +27,7 @@ see_accounts: accounts
 
 # Regular test target
 test: test/main.cpp test/utils/*.cpp headers/**/*.cpp test/forca/*.cpp
-	g++ $< $(CXXFLAGS) -o $(BIN_DIR)/test
+	g++ $+ $(CXXFLAGS) -o $(BIN_DIR)/test
 	./$(BIN_DIR)/test
 
 # Test with coverage
