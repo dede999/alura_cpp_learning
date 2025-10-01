@@ -1,11 +1,15 @@
 # Compiler flags
 CXXFLAGS = -O3
 COVERAGE_FLAGS = --coverage -g -O0 -fprofile-arcs -ftest-coverage
+DEBUG_FLAGS = -g -O0
 
 # Directories
 BIN_DIR = bin
 COVERAGE_DIR = coverage
 BUILD_DIR = build
+TEST_DIR = test
+OBJ_DIR = $(BUILD_DIR)/obj
+TEST_OBJ_DIR = $(BUILD_DIR)/test_obj
 
 %: %.cpp
 	g++ $< $(CXXFLAGS) -o $(BIN_DIR)/$@
